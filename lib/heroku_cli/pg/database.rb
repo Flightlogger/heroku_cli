@@ -54,6 +54,10 @@ module HerokuCLI
         info['Followers']
       end
 
+      def forks
+        info['Forks'].split(',').map(&:strip)
+      end
+
       def main?
         !fork? && @url_names.include?('DATABASE_URL')
       end
