@@ -1,8 +1,6 @@
 # HerokuCli
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/heroku_cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem will wrap the Heroku CLI so it may be used in ruby code
 
 ## Installation
 
@@ -22,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a new database in staging that follows the production database
+```ruby
+require 'heroku_cli'
+
+production  = HerokuCLI.application('production')
+production_db = production.pg.main
+
+staging = HerokuCLI.application('staging')
+staging.pg.create_follower(production_db)
+fork_db = staging.pg.forks.first
+staging.un_follow(fork_db)
+```
 
 ## Development
 
