@@ -31,7 +31,7 @@ module HerokuCLI
       end
 
       def plan
-        info['Plan'].gsub(' ', '-')
+        info['Plan'].gsub(' ', '-').downcase
       end
 
       def data_size
@@ -58,11 +58,19 @@ module HerokuCLI
         info['Forks'].split(',').map(&:strip)
       end
 
+      def following
+        info['Following'].strip
+      end
+
       def main?
         !fork? && @url_names.include?('DATABASE_URL')
       end
 
       def fork?
+        info.key?('Forks')
+      end
+
+      def follower?
         info.key?('Following')
       end
 

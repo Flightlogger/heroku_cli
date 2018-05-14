@@ -1,0 +1,38 @@
+=== DATABASE_URL, HEROKU_POSTGRESQL_ORANGE_URL
+Plan:                  Standard 0
+Status:                Available
+Data Size:             16.3 GB
+Tables:                136
+PG Version:            9.5.12
+Connections:           5/120
+Credentials:           1
+Fork/Follow:           Available
+Rollback:              earliest from 2018-05-10 14:14 UTC
+Created:               2018-05-07 11:59 UTC
+Region:                eu
+Data Encryption:       In Use
+Continuous Protection: On
+Forked From:           HEROKU_POSTGRESQL_GRAY
+Maintenance:           not required
+Maintenance window:    Wednesdays 21:00 to Thursdays 01:00 UTC
+Add-on:                postgresql-animated-91529
+
+=== HEROKU_POSTGRESQL_GRAY_URL
+Plan:                  Standard 0
+Status:                Available
+Data Size:             16.3 GB
+Tables:                136
+PG Version:            9.5.10
+Connections:           1/120
+Credentials:           1
+Fork/Follow:           Available
+Rollback:              earliest from 2018-05-10 14:14 UTC
+Created:               2017-11-13 08:22 UTC
+Region:                eu
+Data Encryption:       In Use
+Continuous Protection: On
+Forks:                 HEROKU_POSTGRESQL_ORANGE
+Maintenance:           not required
+Maintenance window:    Mondays 20:30 to Tuesdays 00:30 UTC
+Add-on:                postgresql-curved-14316
+

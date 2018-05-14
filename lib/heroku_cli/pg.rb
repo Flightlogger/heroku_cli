@@ -23,14 +23,14 @@ module HerokuCLI
 
     # Remove the following of a database and put DB into write mode
     def un_follow(database)
-      raise "Not a following database #{database.name}" unless database.fork?
+      raise "Not a following database #{database.name}" unless database.follower?
       heroku "pg:unfollow #{database.url_name} -c #{application.name}"
     end
 
     # sets DATABASE as your DATABASE_URL
     def promote(database)
       raise "Database already main #{database.name}" if database.main?
-      un_follow(database) if database.fork?
+      un_follow(database) if database.follower?
       heroku "pg:promote #{database.resource_name}"
     end
 
@@ -44,9 +44,14 @@ module HerokuCLI
       info.find(&:main?)
     end
 
-    # Returns an array of allow follower databases
+    # Returns an array of allow forks databases
     def forks
       info.find_all(&:fork?)
+    end
+
+    # Returns an array of allow follower databases
+    def followers
+      info.find_all(&:follower?)
     end
 
     # blocks until database is available
