@@ -37,7 +37,7 @@ RSpec.describe HerokuCLI::PG do
     end
   end
 
-  context 'un_follower' do
+  context 'un_follow' do
     before do
       allow(subject).to receive(:heroku).with('pg:info') { file_fixture('pg_info_multi') }
     end
@@ -51,6 +51,24 @@ RSpec.describe HerokuCLI::PG do
       database = subject.forks.first
       expect(subject).to receive(:heroku).with("pg:unfollow HEROKU_POSTGRESQL_ORANGE_URL -c test")
       subject.un_follow(database)
+    end
+  end
+
+  context 'promote' do
+    before do
+      allow(subject).to receive(:heroku).with('pg:info') { file_fixture('pg_info_multi') }
+    end
+
+    it 'fails if already main' do
+      database = subject.main
+      expect { subject.promote(database) }.to raise_exception('Database already main DATABASE')
+    end
+
+    it 'will un_follow first' do
+      database = subject.forks.first
+      expect(subject).to receive(:un_follow).with(database) { nil }
+      expect(subject).to receive(:heroku).with('pg:promote postgresql-animated-91529') { }
+      subject.promote(database)
     end
   end
 end

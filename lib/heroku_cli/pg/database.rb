@@ -50,7 +50,7 @@ module HerokuCLI
       end
 
       def main?
-        !fork?
+        !fork? && url_name == 'DATABASE_URL'
       end
 
       def fork?
