@@ -2,9 +2,8 @@ require_relative 'pg/database'
 
 module HerokuCLI
   class PG < Base
-    def follow(database_name, options = {})
-      plan = options.delete(:plan) || 'standard-0'
-      heroku "addons:create heroku-postgresql:#{plan} --follow #{database_name}"
+    def wait
+      heroku 'pg:wait'
     end
 
     def info
@@ -15,6 +14,16 @@ module HerokuCLI
           Database.new(stdout.shift.strip, stdout)
         end
       end
+    end
+
+    def create_follower(database, options = {})
+      plan = options.delete(:plan) || database.plan
+      heroku "addons:create heroku-postgresql:#{plan} --follow #{database.resource_name}"
+    end
+
+    def un_follow(database)
+      raise "Not a following database #{database.name}" unless database.fork?
+      heroku "pg:unfollow #{database.url_name}"
     end
 
     def main

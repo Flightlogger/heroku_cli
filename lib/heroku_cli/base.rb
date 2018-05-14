@@ -6,6 +6,8 @@ module HerokuCLI
       @application = application
     end
 
+    protected
+
     def heroku(cmd)
       system "heroku #{cmd} -a #{application}"
     end

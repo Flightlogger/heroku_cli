@@ -69,7 +69,7 @@ module HerokuCLI
         info['Region']
       end
 
-      def add_on
+      def resource_name
         info['Add-on']
       end
     end
