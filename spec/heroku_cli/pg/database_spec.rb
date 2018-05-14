@@ -7,7 +7,7 @@ RSpec.describe HerokuCLI::PG::Database do
 
   it { expect(subject.url_name).to eq 'DATABASE_URL' }
   it { expect(subject.name).to eq 'DATABASE' }
-  it { expect(subject.plan).to eq 'Standard 0' }
+  it { expect(subject.plan).to eq 'Standard-0' }
   it { expect(subject.data_size).to eq '16.3 GB' }
   it { expect(subject.status).to eq 'Available' }
   it { expect(subject.tables).to eq 136 }

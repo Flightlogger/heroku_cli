@@ -3,13 +3,13 @@ module HerokuCLI
     attr_reader :application
 
     def initialize(application)
-      @application = application
+      @application = application.is_a?(String) ? Application.new(application) : application
     end
 
     protected
 
     def heroku(cmd)
-      system "heroku #{cmd} -a #{application}"
+      %x{ heroku #{cmd} -a #{application.name} }
     end
   end
 end

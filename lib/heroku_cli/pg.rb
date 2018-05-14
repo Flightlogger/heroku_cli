@@ -23,7 +23,7 @@ module HerokuCLI
 
     def un_follow(database)
       raise "Not a following database #{database.name}" unless database.fork?
-      heroku "pg:unfollow #{database.url_name}"
+      heroku "pg:unfollow #{database.url_name} -c #{application.name}"
     end
 
     def main

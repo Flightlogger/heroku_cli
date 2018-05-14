@@ -27,12 +27,12 @@ RSpec.describe HerokuCLI::PG do
     let (:database) { HerokuCLI::PG::Database.new(db_name, db_info) }
 
     it 'with same plan' do
-      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:#{database.plan} --follow #{database.resource_name}")
+      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:Standard-0 --follow postgresql-curved-14316")
       subject.create_follower(database)
     end
 
     it 'with the plan specified' do
-      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:foobar --follow #{database.resource_name}")
+      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:foobar --follow postgresql-curved-14316")
       subject.create_follower(database, plan: 'foobar')
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe HerokuCLI::PG do
 
     it 'will unfollow' do
       database = subject.forks.first
-      expect(subject).to receive(:heroku).with("pg:unfollow #{database.url_name}")
+      expect(subject).to receive(:heroku).with("pg:unfollow HEROKU_POSTGRESQL_ORANGE_URL -c test")
       subject.un_follow(database)
     end
   end

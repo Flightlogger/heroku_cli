@@ -26,7 +26,7 @@ module HerokuCLI
       end
 
       def plan
-        info['Plan']
+        info['Plan'].gsub(' ', '-')
       end
 
       def data_size
