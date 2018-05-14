@@ -25,5 +25,9 @@ module HerokuCLI
     def pg
       @pg ||= PG.new(self)
     end
+
+    def ps
+      @ps ||= ProcessStatus.new(self)
+    end
   end
 end
