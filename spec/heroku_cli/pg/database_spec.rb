@@ -17,6 +17,6 @@ RSpec.describe HerokuCLI::PG::Database do
   it { expect(subject.fork?).to eq false }
   it { expect(subject.behind?).to eq false }
   it { expect(subject.region).to eq 'eu' }
-  it { expect(subject.resource_name).to eq 'postgresql-curved-14316' }
+  it { expect(subject.resource_name).to eq 'postgresql-curved-12345' }
   it { expect(subject.to_s).to eq file_fixture('pg_info') }
 end

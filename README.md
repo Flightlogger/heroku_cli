@@ -1,4 +1,4 @@
-# HerokuCli
+# HerokuCLI
 
 This gem will wrap the Heroku CLI so it may be used in ruby code
 
@@ -49,4 +49,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Code of Conduct
 
-Everyone interacting in the HerokuCli project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/bergholdt/heroku_cli/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the HerokuCLI project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/bergholdt/heroku_cli/blob/master/CODE_OF_CONDUCT.md).

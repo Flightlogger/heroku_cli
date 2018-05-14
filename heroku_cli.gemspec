@@ -5,7 +5,7 @@ require "heroku_cli/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "heroku_cli"
-  spec.version       = HerokuCli::VERSION
+  spec.version       = HerokuCLI::VERSION
   spec.authors       = ["Rasmus Bergholdt"]
   spec.email         = ["rasmus.bergholdt@gmail.com"]
 

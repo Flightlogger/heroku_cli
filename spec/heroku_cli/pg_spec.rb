@@ -27,12 +27,12 @@ RSpec.describe HerokuCLI::PG do
     let (:database) { HerokuCLI::PG::Database.new(db_name, db_info) }
 
     it 'with same plan' do
-      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:Standard-0 --follow postgresql-curved-14316")
+      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:Standard-0 --follow postgresql-curved-12345")
       subject.create_follower(database)
     end
 
     it 'with the plan specified' do
-      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:foobar --follow postgresql-curved-14316")
+      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:foobar --follow postgresql-curved-12345")
       subject.create_follower(database, plan: 'foobar')
     end
   end

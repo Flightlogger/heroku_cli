@@ -15,7 +15,7 @@ Continuous Protection: On
 Followers:             HEROKU_POSTGRESQL_ORANGE
 Maintenance:           not required
 Maintenance window:    Mondays 20:30 to Tuesdays 00:30 UTC
-Add-on:                postgresql-curved-14316
+Add-on:                postgresql-curved-12345
 
 === HEROKU_POSTGRESQL_ORANGE_URL
 Plan:                  Standard 0
@@ -35,5 +35,5 @@ Following:             DATABASE
 Behind By:             0 commits
 Maintenance:           not required
 Maintenance window:    Wednesdays 21:00 to Thursdays 01:00 UTC
-Add-on:                postgresql-animated-91529
+Add-on:                postgresql-animated-12345
 

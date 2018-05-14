@@ -15,4 +15,4 @@ Continuous Protection: On
 Followers:             HEROKU_POSTGRESQL_ORANGE
 Maintenance:           not required
 Maintenance window:    Mondays 20:30 to Tuesdays 00:30 UTC
-Add-on:                postgresql-curved-14316
+Add-on:                postgresql-curved-12345
