@@ -3,8 +3,9 @@ module HerokuCLI
     class Database
       attr_reader :url_name, :info
 
-      def initialize(url_name, info)
-        @url_name = url_name
+      def initialize(info)
+        @url_names = info.shift
+        @url_names = @url_names.sub('=== ','').split(',').map(&:strip)
         @info = {}
         info.each do |line|
           k = line.split(':')[0].strip
@@ -14,15 +15,19 @@ module HerokuCLI
         end
       end
 
+      def url_name
+        @url_names.first
+      end
+
       def to_s
-        result = ["=== #{url_name}"]
+        result = ["=== #{@url_names.join(', ')}"]
         result.concat(info.map { |k, v| format("%-22.22s %s", "#{k}:", v)})
         result.concat([''])
         result.join("\n")
       end
 
       def name
-        @name ||= @url_name.gsub(/_URL\z/, '')
+        @name ||= url_name.gsub(/_URL\z/, '')
       end
 
       def plan
@@ -50,7 +55,7 @@ module HerokuCLI
       end
 
       def main?
-        !fork? && url_name == 'DATABASE_URL'
+        !fork? && @url_names.include?('DATABASE_URL')
       end
 
       def fork?

@@ -1,9 +1,8 @@
 require "spec_helper"
 
 RSpec.describe HerokuCLI::PG::Database do
-  let(:db_name) { file_fixture('pg_info').split("\n").first.split(' ').last }
-  let(:db_info) { file_fixture('pg_info').split("\n")[1..-1] }
-  let(:subject) { HerokuCLI::PG::Database.new(db_name, db_info) }
+  let(:db_info) { file_fixture('pg_info').split("\n") }
+  let(:subject) { HerokuCLI::PG::Database.new(db_info) }
 
   it { expect(subject.url_name).to eq 'DATABASE_URL' }
   it { expect(subject.name).to eq 'DATABASE' }

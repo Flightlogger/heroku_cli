@@ -22,9 +22,8 @@ RSpec.describe HerokuCLI::PG do
   end
 
   context 'create_follower' do
-    let(:db_name) { file_fixture('pg_info').split("\n").first.split(' ').last }
-    let(:db_info) { file_fixture('pg_info').split("\n")[1..-1] }
-    let (:database) { HerokuCLI::PG::Database.new(db_name, db_info) }
+    let(:db_info) { file_fixture('pg_info').split("\n") }
+    let (:database) { HerokuCLI::PG::Database.new(db_info) }
 
     it 'with same plan' do
       expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:Standard-0 --follow postgresql-curved-12345")
@@ -67,7 +66,7 @@ RSpec.describe HerokuCLI::PG do
     it 'will un_follow first' do
       database = subject.forks.first
       expect(subject).to receive(:un_follow).with(database) { nil }
-      expect(subject).to receive(:heroku).with('pg:promote postgresql-animated-91529') { }
+      expect(subject).to receive(:heroku).with('pg:promote postgresql-animated-12345') { }
       subject.promote(database)
     end
   end

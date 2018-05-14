@@ -9,7 +9,8 @@ module HerokuCLI
         heroku('pg:info').split("===").reject(&:empty?).map do |stdout|
           next if stdout.nil? || stdout.length.zero?
           stdout = stdout.split("\n")
-          Database.new(stdout.shift.strip, stdout)
+          stdout[0] = "===#{stdout[0]}"
+          Database.new(stdout)
         end
       end
     end
@@ -28,7 +29,7 @@ module HerokuCLI
 
     # sets DATABASE as your DATABASE_URL
     def promote(database)
-      raise "Databse already main #{database.name}" if database.main?
+      raise "Database already main #{database.name}" if database.main?
       un_follow(database) if database.fork?
       heroku "pg:promote #{database.resource_name}"
     end
