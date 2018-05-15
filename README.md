@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Create a new database in staging that follows the production database
+Create a new database in staging that follows the production database and promote it to main DB when ready
 ```ruby
 require 'heroku_cli'
 
@@ -29,8 +29,9 @@ production_db = production.pg.main
 
 staging = HerokuCLI.application('staging')
 staging.pg.create_follower(production_db)
-fork_db = staging.pg.forks.first
-staging.un_follow(fork_db)
+staging.pg.wait
+new_db = staging.pg.followers.first
+staging.promote(new_db)
 ```
 
 ## Development
