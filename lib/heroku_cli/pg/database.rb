@@ -1,7 +1,7 @@
 module HerokuCLI
   class PG < Base
     class Database
-      attr_reader :url_name, :info
+      attr_reader :url_names, :info
 
       def initialize(info)
         @url_names = info.shift
@@ -58,12 +58,16 @@ module HerokuCLI
         info['Forks'].split(',').map(&:strip)
       end
 
+      def forked_from
+        info['Forked From'].split(',').map(&:strip)
+      end
+
       def following
         info['Following'].strip
       end
 
       def main?
-        !fork? && @url_names.include?('DATABASE_URL')
+        @url_names.include?('DATABASE_URL')
       end
 
       def fork?
