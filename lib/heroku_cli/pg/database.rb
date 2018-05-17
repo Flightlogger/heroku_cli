@@ -83,7 +83,7 @@ module HerokuCLI
       end
 
       def behind_by
-        info['Behind By']&.match(/(\d+)/)&.first&.to_i || 0
+        info['Behind By']&.match(/(\d+)/)&.to_s&.to_i || 0
       end
 
       def region
