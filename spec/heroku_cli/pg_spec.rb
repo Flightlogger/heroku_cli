@@ -101,6 +101,17 @@ RSpec.describe HerokuCLI::PG do
       expect(subject).to receive(:heroku).with('pg:promote postgresql-animated-12345')
       subject.promote(database)
     end
+
+    context 'ensure promoted master ready' do
+      before do
+        allow(subject).to receive(:heroku).with('pg:info') { file_fixture('pg_info_promote') }
+      end
+
+      it 'fails if already main' do
+        database = subject.main
+        expect(subject.main.follower?).to eq true
+      end
+    end
   end
 
   context 'destroy' do

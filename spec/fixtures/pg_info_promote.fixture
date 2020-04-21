@@ -1,0 +1,40 @@
+=== HEROKU_POSTGRESQL_PURPLE_URL, DATABASE_URL
+Plan:                  Standard 0
+Status:                Available
+Data Size:             42 GB
+Tables:                145
+PG Version:            9.6.15
+Connections:           2/120
+Connection Pooling:    Available
+Credentials:           1
+Fork/Follow:           Unavailable on followers
+Rollback:              earliest from 2019-08-13 07:42 UTC
+Created:               2019-08-13 07:42 UTC
+Region:                eu
+Data Encryption:       In Use
+Continuous Protection: On (on leader)
+Following:             ec2-18-200-61-66.eu-west-1.compute.amazonaws.com:5432/d9ip89b6vojscq
+Behind By:             0 commits
+Maintenance:           not required
+Maintenance window:    Thursdays 18:30 to 22:30 UTC
+Add-on:                postgresql-solid-26065
+
+=== HEROKU_POSTGRESQL_AQUA_URL
+Plan:                  Standard 0
+Status:                Available
+Data Size:             41.6 GB
+Tables:                145
+PG Version:            9.6.14
+Connections:           5/120
+Connection Pooling:    Available
+Credentials:           1
+Fork/Follow:           Available
+Rollback:              earliest from 2019-08-09 08:18 UTC
+Created:               2019-08-06 13:59 UTC
+Region:                eu
+Data Encryption:       In Use
+Continuous Protection: On
+Forked From:           ec2-18-200-61-66.eu-west-1.compute.amazonaws.com:5432/d9ip89b6vojscq
+Maintenance:           not required
+Maintenance window:    Fridays 17:00 to 21:00 UTC
+Add-on:                postgresql-encircled-77515
