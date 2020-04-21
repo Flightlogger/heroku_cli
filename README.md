@@ -1,3 +1,5 @@
+![Ruby](https://github.com/Flightlogger/heroku_cli/workflows/Ruby/badge.svg)
+
 # HerokuCLI
 
 This gem will wrap the Heroku CLI so it may be used in ruby code
