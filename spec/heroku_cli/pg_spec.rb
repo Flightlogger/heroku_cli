@@ -97,9 +97,9 @@ RSpec.describe HerokuCLI::PG do
 
     it 'will un_follow first' do
       database = subject.followers.first
-      expect(subject).to receive(:un_follow).with(database) { nil }
+      expect(subject).to receive(:un_follow).with(database, wait: false) { nil }
       expect(subject).to receive(:heroku).with('pg:promote postgresql-animated-12345')
-      subject.promote(database)
+      subject.promote(database, wait: false)
     end
 
     context 'ensure promoted master ready' do
@@ -111,6 +111,21 @@ RSpec.describe HerokuCLI::PG do
         database = subject.main
         expect(subject.main.follower?).to eq true
       end
+    end
+  end
+
+  context 'reload' do
+    it 'pick up changes in info' do
+      allow(subject).to receive(:heroku).with('pg:info') { file_fixture('pg_info_follow') }
+      expect(subject.main.name).to eq 'DATABASE'
+      expect(subject.forks.map(&:name)).to eq []
+      expect(subject.followers.map(&:name)).to eq ['HEROKU_POSTGRESQL_ORANGE']
+
+      allow(subject).to receive(:heroku).with('pg:info') { file_fixture('pg_info_fork') }
+      subject.reload
+      expect(subject.main.name).to eq 'DATABASE'
+      expect(subject.forks.map(&:name)).to eq ['HEROKU_POSTGRESQL_GRAY']
+      expect(subject.followers.map(&:name)).to eq []
     end
   end
 
