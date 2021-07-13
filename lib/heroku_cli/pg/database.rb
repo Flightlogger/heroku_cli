@@ -4,15 +4,11 @@ module HerokuCLI
       attr_reader :url_names, :info
 
       def initialize(info)
-        @url_names = info.shift
-        @url_names = @url_names.sub('=== ','').split(',').map(&:strip)
-        @info = {}
-        info.each do |line|
-          k = line.split(':')[0].strip
-          v = line.split(':')[1..-1].join(':').strip
-          next if k.nil? || v.nil?
-          @info[k] = v
-        end
+        parse_info(info)
+      end
+
+      def reload
+        parse_info(heroku("pg:info #{url_name}"))
       end
 
       def url_name
@@ -92,6 +88,18 @@ module HerokuCLI
 
       def resource_name
         info['Add-on']
+      end
+
+      def parse_info(info)
+        @url_names = info.shift
+        @url_names = @url_names.sub('=== ','').split(',').map(&:strip)
+        @info = {}
+        info.each do |line|
+          k = line.split(':')[0].strip
+          v = line.split(':')[1..-1].join(':').strip
+          next if k.nil? || v.nil?
+          @info[k] = v
+        end
       end
     end
   end

@@ -15,6 +15,10 @@ module HerokuCLI
       end
     end
 
+    def reload
+      @info = nil
+    end
+
     # create a follower database
     def create_follower(database, options = {})
       plan = options.delete(:plan) || database.plan
