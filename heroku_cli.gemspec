@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["rasmus.bergholdt@gmail.com"]
 
   spec.summary       = %q{A tiny wrapper for Heroku CLI}
-  spec.description   = %q{Wrap the Heroku CLI to make it more accessable from your ruby script}
+  spec.description   = %q{Wrap the Heroku CLI to make it more accessible from your ruby script}
   spec.homepage      = "https://github.com/Flightlogger/heroku_cli"
   spec.license       = "MIT"
 
@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", ">= 12.3.3"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
 end

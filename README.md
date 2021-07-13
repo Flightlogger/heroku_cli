@@ -33,7 +33,7 @@ staging = HerokuCLI.application('staging')
 staging.pg.create_follower(production_db)
 staging.pg.wait
 new_db = staging.pg.followers.first
-staging.promote(new_db)
+staging.pg.promote(new_db, wait: true)
 ```
 
 ## Development

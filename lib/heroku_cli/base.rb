@@ -6,8 +6,6 @@ module HerokuCLI
       @application = application.is_a?(String) ? Application.new(application) : application
     end
 
-    protected
-
     def heroku(cmd)
       %x{ heroku #{cmd} -a #{application.name} }
     end
