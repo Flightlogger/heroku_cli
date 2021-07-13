@@ -10,7 +10,7 @@ module HerokuCLI
           next if stdout.nil? || stdout.length.zero?
           stdout = stdout.split("\n")
           stdout[0] = "===#{stdout[0]}"
-          Database.new(stdout)
+          Database.new(stdout, self)
         end
       end
     end

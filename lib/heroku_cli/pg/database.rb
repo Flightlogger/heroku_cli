@@ -2,13 +2,16 @@ module HerokuCLI
   class PG < Base
     class Database
       attr_reader :url_names, :info
+      attr_reader :pg
 
-      def initialize(info)
+      def initialize(info, pg = nil)
+        @pg = pg
         parse_info(info)
+
       end
 
       def reload
-        parse_info(heroku("pg:info #{url_name}"))
+        parse_info(pg.heroku("pg:info #{url_name}")) if pg.present?
       end
 
       def url_name
@@ -51,11 +54,11 @@ module HerokuCLI
       end
 
       def forks
-        info['Forks'].split(',').map(&:strip)
+        info['Forks']&.split(',')&.map(&:strip)
       end
 
       def forked_from
-        info['Forked From'].split(',').map(&:strip)
+        info['Forked From']&.split(',')&.map(&:strip)
       end
 
       def following
@@ -67,7 +70,7 @@ module HerokuCLI
       end
 
       def fork?
-        info.key?('Forks')
+        !(main? || follower?) && forked_from&.any?
       end
 
       def follower?
@@ -91,6 +94,7 @@ module HerokuCLI
       end
 
       def parse_info(info)
+        info = info.split("\n") if info.is_a?(String)
         @url_names = info.shift
         @url_names = @url_names.sub('=== ','').split(',').map(&:strip)
         @info = {}

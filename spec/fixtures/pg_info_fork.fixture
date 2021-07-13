@@ -31,7 +31,7 @@ Created:               2017-11-13 08:22 UTC
 Region:                eu
 Data Encryption:       In Use
 Continuous Protection: On
-Forks:                 HEROKU_POSTGRESQL_ORANGE
+Forked From:           HEROKU_POSTGRESQL_ORANGE
 Maintenance:           not required
 Maintenance window:    Mondays 20:30 to Tuesdays 00:30 UTC
 Add-on:                postgresql-curved-14316
