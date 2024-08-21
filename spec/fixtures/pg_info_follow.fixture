@@ -1,4 +1,5 @@
 === DATABASE_URL
+
 Plan:                  Standard 0
 Status:                Available
 Data Size:             16.3 GB
@@ -18,6 +19,7 @@ Maintenance window:    Mondays 20:30 to Tuesdays 00:30 UTC
 Add-on:                postgresql-curved-12345
 
 === HEROKU_POSTGRESQL_ORANGE_URL
+
 Plan:                  Standard 0
 Status:                Available
 Data Size:             16.3 GB

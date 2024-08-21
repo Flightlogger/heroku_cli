@@ -58,12 +58,12 @@ RSpec.describe HerokuCLI::PG do
     let (:database) { HerokuCLI::PG::Database.new(db_info) }
 
     it 'with same plan' do
-      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:standard-0 --follow postgresql-curved-12345")
+      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:standard-0", "--follow postgresql-curved-12345")
       subject.create_follower(database)
     end
 
     it 'with the plan specified' do
-      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:foobar --follow postgresql-curved-12345")
+      expect(subject).to receive(:heroku).with("addons:create heroku-postgresql:foobar", "--follow postgresql-curved-12345")
       subject.create_follower(database, plan: 'foobar')
     end
   end
@@ -80,7 +80,7 @@ RSpec.describe HerokuCLI::PG do
 
     it 'will unfollow' do
       database = subject.followers.first
-      expect(subject).to receive(:heroku).with("pg:unfollow HEROKU_POSTGRESQL_ORANGE_URL -c test")
+      expect(subject).to receive(:heroku).with("pg:unfollow HEROKU_POSTGRESQL_ORANGE_URL", "-c test")
       subject.un_follow(database)
     end
   end
@@ -141,7 +141,7 @@ RSpec.describe HerokuCLI::PG do
 
     it 'will destroy addon' do
       database = subject.forks.first
-      expect(subject).to receive(:heroku).with('addons:destroy HEROKU_POSTGRESQL_GRAY_URL -c test')
+      expect(subject).to receive(:heroku).with('addons:destroy HEROKU_POSTGRESQL_GRAY_URL', '-c test')
       subject.destroy(database)
     end
   end

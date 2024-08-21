@@ -20,6 +20,7 @@ module HerokuCLI
 
       def to_s
         result = ["=== #{@url_names.join(', ')}"]
+        result.concat([''])
         result.concat(info.map { |k, v| format("%-22.22s %s", "#{k}:", v)})
         result.concat([''])
         result.join("\n")
@@ -99,9 +100,12 @@ module HerokuCLI
         @url_names = @url_names.sub('=== ','').split(',').map(&:strip)
         @info = {}
         info.each do |line|
-          k = line.split(':')[0].strip
-          v = line.split(':')[1..-1].join(':').strip
+          next if line.strip.empty?
+
+          k = line.split(':')[0]&.strip
+          v = line.split(':')[1..-1]&.join(':')&.strip
           next if k.nil? || v.nil?
+
           @info[k] = v
         end
       end
