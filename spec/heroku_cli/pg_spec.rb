@@ -80,7 +80,7 @@ RSpec.describe HerokuCLI::PG do
 
     it 'will unfollow' do
       database = subject.followers.first
-      expect(subject).to receive(:heroku).with("pg:unfollow HEROKU_POSTGRESQL_ORANGE_URL", "-c test")
+      expect(subject).to receive(:heroku).with("pg:unfollow HEROKU_POSTGRESQL_ORANGE_URL -c test")
       subject.un_follow(database)
     end
   end
