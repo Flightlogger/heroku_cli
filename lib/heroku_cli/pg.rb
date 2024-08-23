@@ -43,7 +43,7 @@ module HerokuCLI
 
     def destroy(database)
       raise "Cannot destroy #{application.name} main database" if database.main?
-      heroku "addons:destroy #{database.url_name}", "-c #{application.name}"
+      heroku "addons:destroy #{database.url_name} -c #{application.name}"
     end
 
     # Return the main database
