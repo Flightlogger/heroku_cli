@@ -141,7 +141,7 @@ RSpec.describe HerokuCLI::PG do
 
     it 'will destroy addon' do
       database = subject.forks.first
-      expect(subject).to receive(:heroku).with('addons:destroy HEROKU_POSTGRESQL_GRAY_URL', '-c test')
+      expect(subject).to receive(:heroku).with('addons:destroy HEROKU_POSTGRESQL_GRAY_URL -c test')
       subject.destroy(database)
     end
   end
