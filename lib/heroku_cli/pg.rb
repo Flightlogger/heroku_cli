@@ -19,6 +19,12 @@ module HerokuCLI
       @info = nil
     end
 
+    # Create a fork database
+    def create_fork(database, options = {})
+      plan = options.delete(:plan) || database.plan
+      heroku "addons:create heroku-postgresql:#{plan}", "--fork #{database.resource_name}"
+    end
+
     # create a follower database
     def create_follower(database, options = {})
       plan = options.delete(:plan) || database.plan
@@ -39,6 +45,12 @@ module HerokuCLI
 
       un_follow(database, wait: wait) if database.follower?
       heroku "pg:promote #{database.resource_name}"
+    end
+
+    # Get a remote connection url for a database
+    def connection_url(database)
+      url_name = database.url_name
+      heroku "config:get #{url_name}"
     end
 
     def destroy(database)
@@ -64,6 +76,18 @@ module HerokuCLI
     # blocks until database is available
     def wait
       heroku 'pg:wait'
+    end
+
+    # blocks until database is available but waits until pg:info actually says it is ready
+    def wait_for(database, wait_time = 10)
+      until database.available?
+        puts "...wait #{wait_time} seconds for DB to change status to available"
+        sleep wait_time
+        database.reload
+        puts database
+      end
+
+      puts 'Database available!'
     end
 
     def wait_for_follow_fork_transformation(database)
