@@ -11,7 +11,7 @@ module HerokuCLI
       end
 
       def reload
-        parse_info(pg.heroku("pg:info #{url_name}")) if forks && !forks.empty?
+        parse_info(pg.heroku("pg:info #{url_name}")) unless pg.nil?
       end
 
       def url_name
