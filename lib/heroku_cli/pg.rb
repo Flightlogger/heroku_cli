@@ -50,7 +50,7 @@ module HerokuCLI
     # Get a remote connection url for a database
     def connection_url(database)
       url_name = database.url_name
-      heroku "config:get #{url_name}"
+      (heroku "config:get #{url_name}").strip
     end
 
     def destroy(database)
