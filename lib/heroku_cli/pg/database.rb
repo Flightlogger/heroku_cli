@@ -11,7 +11,7 @@ module HerokuCLI
       end
 
       def reload
-        parse_info(pg.heroku("pg:info #{url_name}")) if pg.present?
+        parse_info(pg.heroku("pg:info #{url_name}")) if forks && !forks.empty?
       end
 
       def url_name
@@ -37,6 +37,11 @@ module HerokuCLI
       def data_size
         info['Data Size']
       end
+
+      def created
+        info['Created']
+      end
+
 
       def status
         info['Status']
@@ -76,6 +81,10 @@ module HerokuCLI
 
       def follower?
         info.key?('Following')
+      end
+
+      def available?
+        status == 'Available'
       end
 
       def behind?
